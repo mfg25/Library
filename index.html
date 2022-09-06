@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header id="title-container">
+      <h1 id="title">LIBRARY</h1>
+    </header>
+    <main>
+      <div id="top-main" onclick="">
+        <img
+          src="https://www.svgrepo.com/show/135110/plus.svg"
+          id="plus-img"
+          alt=""
+        />
+        <h2 id="add-book">Add new book</h2>
+      </div>
+      <div id="bottom-main"></div>
+    </main>
+    <div id="form-container" class="form-container">
+      <div class="form">
+        <button id="close">X</button>
+        <h2 id="form-title">Add book</h2>
+        <form action="">
+          <label for="bookTitle" class="label">Title</label>
+          <input type="text" id="bookTitle" placeholder="Title" />
+          <label for="bookAuthor" class="label">Author</label>
+          <input type="text" id="bookAuthor" placeholder="Author" />
+          <label for="bookPages" class="label">Pages</label>
+          <input type="number" id="bookPages" placeholder="Pages" />
+          <div id="check">
+            <label for="iHaveRead" id="iHaveRead">I've already read</label>
+            <input
+              type="checkbox"
+              id="iHaveRead"
+              class="checkbox"
+              name="iHaveRead"
+            />
+          </div>
+          <button type="submit" id="submitButton">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

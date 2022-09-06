@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Mukta', sans-serif;
+}
+body{
+    height: 100vh;
+    background-color: 	#100F0F;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+#title-container{
+    width: 100vw;
+    background-color: #E2DCC8;
+}
+#title{
+    letter-spacing: 3px;
+    font-size: 5em;
+    color: #100F0F;
+    text-align: center;
+}
+main{
+    height: 60vh;
+    width: 70vw;
+    border-radius: 20px;
+    background-color: #E2DCC8;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#plus-img{
+    width: 50px;
+    padding-right: 5px;
+}
+#add-book{
+    padding-left: 5px;
+}
+#top-main{
+    cursor: pointer;
+    padding-top: 5px;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#bottom-main{
+    display: grid;
+    height: 85%;
+    width: 100%;
+    grid-template-columns: repeat(4, 25%);
+    grid-auto-rows: 100%;
+    overflow-y: auto;
+}
+#template{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 1s ease;
+    cursor: pointer;
+}
+#template:hover{
+    background-color: #100F0F; 
+}
+#book{
+    align-self: center;
+    width: 60%;
+    transition: all 1s ease;
+}
+#template:hover #book{
+    transform:translateY(50%);
+    width:45%;
+}
+#title-overlay{
+    color: #E2DCC8;
+    font-size: 3em;
+    align-self: center;
+    opacity: 0;
+    transition: all 1s ease;
+}
+#template:hover #title-overlay{
+    opacity: 1;
+}
+.form-container{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color:rgba(0,0,0, .5);
+    top: 0px;
+    left: 0px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.form-container.mostrar {
+    display: flex;
+}
+.form{
+    position: relative;
+    border: 10px solid #887f5d;
+    background-color: #E2DCC8;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 30vw;
+    height: 45vh;
+    animation-name: popUp;
+    animation-duration: 0.5s;
+}
+
+
+@keyframes popUp{
+    0%{
+        opacity:0;
+        transform: translateY(-40%);
+    }
+    100%{
+        opacity:1;
+        transform: translateY(0);
+    }
+}
+
+form{
+    transform: translateY(-8%);
+    height: 70%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#form-title{
+    font-size: 3.0em;
+}
+.label{
+    font-size: 1.2em;
+    transform: translateY(35%);
+}
+input{
+    letter-spacing: 2px;
+    background-color:#E2DCC8;
+    border: 2px solid #887f5d;
+}
+#check{
+    display: flex;
+    align-items: center;
+}
+#iHaveRead{
+    position: relative;
+    font-size: larger;
+}
+.checkbox{
+    width: 25px;
+    cursor: pointer;
+}
+#submitButton{
+    background-color:#E2DCC8;
+    border: 2px solid #887f5d;
+    transition: 0.5s;
+    height: 35px;
+    cursor: pointer;
+}
+#submitButton:hover{
+    color: #E2DCC8;
+    background-color: #887f5d;
+}
+#close{
+    position: absolute;
+    background-color:#E2DCC8;
+    border: 2px solid #887f5d;
+    right: 20px;
+    top: 20px;
+    width: 35px;
+    cursor: pointer;
+}
+#close:hover{
+    color: #E2DCC8;
+    background-color: #887f5d;
+}
+#pop-title{
+    font-size: 4.0em;
+}
+.bookDetails{
+    font-size:2.0em;
+}
+.bookButtons{
+    cursor:pointer;
+    padding: 1px 5px 1px 5px;
+    background-color:#E2DCC8;
+    border: 3px solid #887f5d;
+    transition: 0.2s ease;
+}
+.bookButtons:hover{
+    background-color:#100F0F;
+    color: #E2DCC8;
+    
+}
+
+
+
+
