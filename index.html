@@ -29,11 +29,11 @@
         <h2 id="form-title">Add book</h2>
         <form action="">
           <label for="bookTitle" class="label">Title</label>
-          <input type="text" id="bookTitle" placeholder="Title" />
+          <input type="text" id="bookTitle" placeholder="Title" required />
           <label for="bookAuthor" class="label">Author</label>
-          <input type="text" id="bookAuthor" placeholder="Author" />
+          <input type="text" id="bookAuthor" placeholder="Author" required />
           <label for="bookPages" class="label">Pages</label>
-          <input type="number" id="bookPages" placeholder="Pages" />
+          <input type="number" id="bookPages" placeholder="Pages" required />
           <div id="check">
             <label for="iHaveRead" id="iHaveRead">I've already read</label>
             <input
@@ -43,7 +43,7 @@
               name="iHaveRead"
             />
           </div>
-          <button type="submit" id="submitButton">Submit</button>
+          <button type="submit" id="submitButton" value="Submit">Submit</button>
         </form>
       </div>
     </div>

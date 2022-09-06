@@ -48,6 +48,8 @@ formsJS.addEventListener('click', e => {
         iHaveRead[0].value = false;
     }
 
+    document.getElementById('form-container').classList.remove('mostrar');
+
     addBookToLibrary(title, author, pages, iHaveRead[0].value);
 })
 
@@ -63,6 +65,9 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
     let bookContainer = document.createElement('div');
     bookContainer.id = "template";
 
+    let titleBox = document.createElement('div');
+    titleBox.id = 'title-box';
+    
     let bookTitle = document.createElement('h2');
     bookTitle.id = 'title-overlay';
     bookTitle.innerText = `${title}`;
@@ -71,7 +76,8 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
     image.src = "book.png";
     image.id = "book";
 
-    bookContainer.appendChild(bookTitle);
+    titleBox.appendChild(bookTitle)
+    bookContainer.appendChild(titleBox);
     bookContainer.appendChild(image);
     bookContainer.dataset.index = booksAdded;
 
@@ -90,6 +96,12 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
 
     let bookTitlePop = document.createElement('h2');
     bookTitlePop.id = "pop-title";
+    if(title.length <= 7){
+        bookTitle.style.fontSize = '3.4em'
+    }
+    if(title.length > 10){
+        bookTitle.style.fontSize = '2em'
+    }
     bookTitlePop.innerText = `${title}`
 
     let bookAuthorPop = document.createElement('p');
@@ -107,16 +119,16 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
 
 
     if (iHaveRead == 'true') {
-        iHaveReadButton.innerText = `I HAVE READ`;
+        iHaveReadButton.innerText = `I have read`;
     } else {
-        iHaveReadButton.innerText = `I HAVEN'T READ`;
+        iHaveReadButton.innerText = `I haven't read`;
     }
 
 
     let removeButton = document.createElement('button');
     removeButton.classList.add('bookDetails');
     removeButton.classList.add('bookButtons');
-    removeButton.innerText = 'REMOVE BOOK'
+    removeButton.innerText = 'Remove book'
     removeButton.dataset.index = booksAdded;
 
     popUp.appendChild(closeButton);
@@ -154,10 +166,10 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
             if (element.dataset.index == iHaveReadButton.dataset.index) {
                 let list = element.firstChild.childNodes;
 
-                if (list[4].innerText == 'I HAVE READ') {
-                    list[4].innerText = "I HAVEN'T READ"
-                } else if (list[4].innerText == "I HAVEN'T READ") {
-                    list[4].innerText = "I HAVE READ"
+                if (list[4].innerText == 'I have read') {
+                    list[4].innerText = "I haven't read"
+                } else if (list[4].innerText == "I haven't read") {
+                    list[4].innerText = "I have read"
                 }
 
             }
@@ -173,6 +185,33 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
         })
     })
 
+    removeButton.addEventListener('click', e =>{
+        let elementIndex = removeButton.dataset.index;
+        myLibrary.forEach(book => {
+            if(book.index == elementIndex){
+                myLibrary = myLibrary.filter(a =>{
+                    return a.index != elementIndex;
+                })
+            }
+        });
+        domLibrary.forEach(book => {
+            if(book.dataset.index == elementIndex){
+                book.remove();
+                domLibrary = domLibrary.filter(a =>{
+                    return a.dataset.index != elementIndex;
+                })
+            }
+
+        });
+        popLibrary.forEach(book => {
+            if(book.dataset.index == elementIndex){
+                book.remove();
+                popLibrary = popLibrary.filter(a =>{
+                    return a.dataset.index != elementIndex;
+                })
+            }
+        });
+    })
 }
 
 

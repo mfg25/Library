@@ -59,7 +59,8 @@ main{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
     transition: all 1s ease;
     cursor: pointer;
 }
@@ -67,20 +68,33 @@ main{
     background-color: #100F0F; 
 }
 #book{
+    transform:translateY(-60%);
     align-self: center;
     width: 60%;
     transition: all 1s ease;
 }
 #template:hover #book{
-    transform:translateY(50%);
-    width:45%;
+    transform:translateY(-50%);
+    
+}
+#title-box{
+    width: 100%;
+    height: 100px;
+    text-align: center;
 }
 #title-overlay{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    box-sizing: inherit;
     color: #E2DCC8;
-    font-size: 3em;
+    font-size: 2.5em;
     align-self: center;
     opacity: 0;
     transition: all 1s ease;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; 
 }
 #template:hover #title-overlay{
     opacity: 1;
@@ -183,9 +197,11 @@ input{
 }
 #pop-title{
     font-size: 4.0em;
+    font-weight:100;
 }
 .bookDetails{
-    font-size:2.0em;
+    font-size:1.7em;
+    font-weight:100;
 }
 .bookButtons{
     cursor:pointer;
@@ -195,9 +211,8 @@ input{
     transition: 0.2s ease;
 }
 .bookButtons:hover{
-    background-color:#100F0F;
     color: #E2DCC8;
-    
+    background-color: #887f5d;
 }
 
 
