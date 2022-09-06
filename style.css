@@ -31,21 +31,30 @@ main{
     align-items: center;
     flex-direction: column;
 }
-#plus-img{
-    width: 50px;
-    padding-right: 5px;
+#plus{
+    font-size: 50px;
+    font-weight: 100;
+    transform: translateY(-1px);
 }
 #add-book{
-    padding-left: 5px;
+    font-weight:600;
+    padding-left: 8px;
 }
 #top-main{
     cursor: pointer;
-    padding-top: 5px;
+    border-radius: 20px 20px 0px 0px;
+    width: 101%;
     height: 15%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    transition: 0.5s;
+}
+#top-main:hover{
+    
+    color: white;
+    background-color: #100F0F;
 }
 #bottom-main{
     display: grid;

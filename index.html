@@ -14,11 +14,7 @@
     </header>
     <main>
       <div id="top-main" onclick="">
-        <img
-          src="https://www.svgrepo.com/show/135110/plus.svg"
-          id="plus-img"
-          alt=""
-        />
+        <h1 id="plus">+</h1>
         <h2 id="add-book">Add new book</h2>
       </div>
       <div id="bottom-main"></div>
@@ -29,7 +25,13 @@
         <h2 id="form-title">Add book</h2>
         <form action="">
           <label for="bookTitle" class="label">Title</label>
-          <input type="text" id="bookTitle" placeholder="Title" required />
+          <input
+            type="text"
+            id="bookTitle"
+            placeholder="Title"
+            required
+            maxlength="100s"
+          />
           <label for="bookAuthor" class="label">Author</label>
           <input type="text" id="bookAuthor" placeholder="Author" required />
           <label for="bookPages" class="label">Pages</label>

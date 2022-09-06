@@ -96,13 +96,16 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
 
     let bookTitlePop = document.createElement('h2');
     bookTitlePop.id = "pop-title";
+    bookTitlePop.innerText = `${title}`
+
     if(title.length <= 7){
         bookTitle.style.fontSize = '3.4em'
+        bookTitlePop.style.fontSize = '4em'
     }
     if(title.length > 10){
         bookTitle.style.fontSize = '2em'
+        bookTitlePop.style.fontSize = '2em'
     }
-    bookTitlePop.innerText = `${title}`
 
     let bookAuthorPop = document.createElement('p');
     bookAuthorPop.classList.add('bookDetails');
@@ -119,9 +122,9 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
 
 
     if (iHaveRead == 'true') {
-        iHaveReadButton.innerText = `I have read`;
+        iHaveReadButton.innerText = `Read`;
     } else {
-        iHaveReadButton.innerText = `I haven't read`;
+        iHaveReadButton.innerText = `Not read`;
     }
 
 
@@ -166,10 +169,10 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
             if (element.dataset.index == iHaveReadButton.dataset.index) {
                 let list = element.firstChild.childNodes;
 
-                if (list[4].innerText == 'I have read') {
-                    list[4].innerText = "I haven't read"
-                } else if (list[4].innerText == "I haven't read") {
-                    list[4].innerText = "I have read"
+                if (list[4].innerText == 'Read') {
+                    list[4].innerText = "Not read"
+                } else if (list[4].innerText == "Not read") {
+                    list[4].innerText = "Read"
                 }
 
             }
