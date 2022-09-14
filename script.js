@@ -14,16 +14,13 @@ close.addEventListener('click', e => {
     document.getElementById('form-container').classList.remove('mostrar');
 })
 
-
-
-
-
-let popLibrary = [];
+//global variables
+let popUps = [];
 let domLibrary = [];
 let myLibrary = [];
 let booksAdded = 0;
 
-
+//book constructor
 class Book {
     constructor(title, author, pages, haveIRead, index) {
         this.title = title;
@@ -47,41 +44,23 @@ formsJS.addEventListener('click', e => {
     } else {
         iHaveRead[0].value = false;
     }
-
+ 
     document.getElementById('form-container').classList.remove('mostrar');
 
     addBookToLibrary(title, author, pages, iHaveRead[0].value);
+    showBookOnLibrary(title);
+    addBookPopUp(title, author, pages, iHaveRead[0].value);
 })
 
 function addBookToLibrary(title, author, pages, iHaveRead) {
     // bookIndex
     booksAdded++;
 
-
     let book = new Book(title, author, pages, iHaveRead, booksAdded);
     myLibrary.push(book);
+}
 
-    // creating book on library
-    let bookContainer = document.createElement('div');
-    bookContainer.id = "template";
-
-    let titleBox = document.createElement('div');
-    titleBox.id = 'title-box';
-    
-    let bookTitle = document.createElement('h2');
-    bookTitle.id = 'title-overlay';
-    bookTitle.innerText = `${title}`;
-
-    let image = document.createElement('img');
-    image.src = "book.png";
-    image.id = "book";
-
-    titleBox.appendChild(bookTitle)
-    bookContainer.appendChild(titleBox);
-    bookContainer.appendChild(image);
-    bookContainer.dataset.index = booksAdded;
-
-    // creating book pop-up 
+function addBookPopUp(title, author, pages, iHaveRead){
 
     let popUpContainer = document.createElement('div');
     popUpContainer.classList.add('form-container');
@@ -98,15 +77,9 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
     bookTitlePop.id = "pop-title";
     bookTitlePop.innerText = `${title}`
 
-    if(title.length <= 7){
-        bookTitle.style.fontSize = '3.4em'
-        bookTitlePop.style.fontSize = '4em'
-    }
-    if(title.length > 10){
-        bookTitle.style.fontSize = '2em'
-        bookTitlePop.style.fontSize = '2em'
-    }
-
+    if(title.length <= 10) bookTitlePop.style.fontSize = '4em'
+    else bookTitlePop.style.fontSize = '2em'
+    
     let bookAuthorPop = document.createElement('p');
     bookAuthorPop.classList.add('bookDetails');
     bookAuthorPop.innerText = `Author: ${author}`
@@ -120,13 +93,11 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
     iHaveReadButton.classList.add('bookButtons');
     iHaveReadButton.dataset.index = booksAdded;
 
-
     if (iHaveRead == 'true') {
         iHaveReadButton.innerText = `Read`;
     } else {
         iHaveReadButton.innerText = `Not read`;
     }
-
 
     let removeButton = document.createElement('button');
     removeButton.classList.add('bookDetails');
@@ -142,43 +113,30 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
     popUp.appendChild(removeButton);
     popUpContainer.appendChild(popUp);
 
-    library.appendChild(bookContainer);
-    domLibrary.push(bookContainer);
-    popLibrary.push(popUpContainer);
-    popUpsContainer.appendChild(popUpContainer);
+    //event listeners pop up
 
-    //creating book event listener
-    bookContainer.addEventListener('click', e => {
-        popLibrary.forEach(element => {
-            if (element.dataset.index == bookContainer.dataset.index) {
-                element.classList.add('mostrar');
-            }
-        });
-    })
-    //creating close event listener
     closeButton.addEventListener('click', e => {
-        popLibrary.forEach(element => {
-            if (element.dataset.index == bookContainer.dataset.index) {
+        popUps.forEach(element => {
+            if (element.dataset.index == popUpContainer.dataset.index) {
                 element.classList.remove('mostrar');
             }
         });
     })
 
     iHaveReadButton.addEventListener('click', e => {
-        popLibrary.forEach(element => {
-            if (element.dataset.index == iHaveReadButton.dataset.index) {
+        popUps.forEach(element => {
+            if (element.dataset.index == popUpContainer.dataset.index) {
                 let list = element.firstChild.childNodes;
 
                 if (list[4].innerText == 'Read') {
                     list[4].innerText = "Not read"
-                } else if (list[4].innerText == "Not read") {
+                } else {
                     list[4].innerText = "Read"
                 }
-
             }
         });
         myLibrary.forEach(element => {
-            if (element['index'] == iHaveReadButton.dataset.index) {
+            if (element['index'] == popUpContainer.dataset.index) {
                 if (element['iHaveRead'] == 'true') {
                     element['iHaveRead'] == 'false'
                 } else {
@@ -206,18 +164,58 @@ function addBookToLibrary(title, author, pages, iHaveRead) {
             }
 
         });
-        popLibrary.forEach(book => {
+        popUps.forEach(book => {
             if(book.dataset.index == elementIndex){
                 book.remove();
-                popLibrary = popLibrary.filter(a =>{
+                popUps = popUps.filter(a =>{
                     return a.dataset.index != elementIndex;
                 })
             }
         });
     })
+
+    
+    popUps.push(popUpContainer);
+    popUpsContainer.appendChild(popUpContainer);
+
+    
 }
 
+function showBookOnLibrary(title){
 
+    let bookContainer = document.createElement('div');
+    bookContainer.id = "template";
 
+    let titleBox = document.createElement('div');
+    titleBox.id = 'title-box';
+    
+    let bookTitle = document.createElement('h2');
+    bookTitle.id = 'title-overlay';
+    bookTitle.innerText = `${title}`;
 
+    if(title.length <= 10) bookTitle.style.fontSize = '3.4em'
+    else bookTitle.style.fontSize = '2em'
 
+    let image = document.createElement('img');
+    image.src = "book.png";
+    image.id = "book";
+
+    titleBox.appendChild(bookTitle)
+    bookContainer.appendChild(titleBox);
+    bookContainer.appendChild(image);
+    bookContainer.dataset.index = booksAdded;
+
+    //event listener show book pop up
+
+    bookContainer.addEventListener('click', e => {
+        popUps.forEach(element => {
+            if (element.dataset.index == bookContainer.dataset.index) {
+                element.classList.add('mostrar');
+            }
+        });
+    })
+    
+    library.appendChild(bookContainer);
+    domLibrary.push(bookContainer);
+
+}
